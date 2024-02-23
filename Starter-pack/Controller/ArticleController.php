@@ -16,10 +16,9 @@ class ArticleController
     // Note: this function can also be used in a repository - the choice is yours
     private function getArticles()
     {
-        // TODO: prepare the database connection
-        // Note: you might want to use a re-usable databaseManager class - the choice is yours
-        // TODO: fetch all articles as $rawArticles (as a simple array)
-        $rawArticles = [];
+        $pdo = new PDO('mysql:host=localhost;dbname=mvc_exercice', 'root', '');
+        $query = $pdo->query('SELECT * FROM mvc-becode');
+        $rawArticles = $query->fetchAll(PDO::FETCH_ASSOC);
 
         $articles = [];
         foreach ($rawArticles as $rawArticle) {
